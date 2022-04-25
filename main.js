@@ -30,6 +30,7 @@ function gotPoses(results){
         rightWristY=results[0].pose.rightWrist.y;
         console.log("rightWristX="+rightWristX+"rightWristY="+rightWristY);
     score_left=results[0].pose.keypoints[9].score;
+    score_right=results[0].pose.keypoints[10].score;
     }
 }
 function modelLoaded(){
@@ -47,6 +48,7 @@ if(score_left>0.2){
     document.getElementById("volume").innerHTML="Volume = "+volume;
     song.setVolume(volume);
 }
+if(score_right>0.2){
 circle(rightWristX,rightWristY,20);
 if (rightWristY>0 && rightWristY<=100){
     document.getElementById("speed").innerHTML="Speed = 0.5x";
@@ -67,6 +69,7 @@ else if(rightWristY>300 && rightWristY<=400){
 else if(rightWristY>400 && rightWristY<=500){
     document.getElementById("speed").innerHTML="Speed  = 2.5x";
     song.rate(2.5);
+}
 }
 }
 function play(){
